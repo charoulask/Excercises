@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript">
+		var search = function() {
+			var limits = [0, 100];
+			var guessNo = 0, 
+				inputNo = parseInt(document.getElementById("guessNo").value, 10);
+
+			//check if number is out or range
+			if(!(inputNo > limits[0] && inputNo < limits[1])) {
+				console.log("Number is out of range");
+				return;
+			}
+
+			//the number is in range so try to find it
+			do {
+				guessNo = parseInt( (limits[0] + limits[1]) / 2, 10);
+				console.log("I pick number " + guessNo);
+
+				if(guessNo > inputNo) {
+					limits[1] = guessNo;
+				} else {
+					limits[0] = guessNo;
+				}
+			} while(guessNo !== inputNo)
+
+			//print the number
+			console.log("The number is " + guessNo);
+		};
+	</script>
+	
+</head>
+
+<body>
+
+<div>
+	Please insert a number
+	<input type="text" name="number" id="guessNo" />
+	<button id="search" onclick="search()">Find the number</button>
+</div>
